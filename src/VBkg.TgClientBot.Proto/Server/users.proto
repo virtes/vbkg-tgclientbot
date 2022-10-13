@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "VBkg.TgClientBot.Proto.Server";
+
+import "google/protobuf/timestamp.proto";
+
+package server;
+
+service Users {
+  rpc GenerateAuthCode(GenerateAuthCodeRequest) returns (GenerateAuthCodeResponse);
+  rpc UseAuthCode(UseAuthCodeRequest) returns (UseAuthCodeResponse);
+}
+
+message GenerateAuthCodeRequest {
+  string userToken = 1;
+}
+
+message GenerateAuthCodeResponse {
+  string authCode = 1;
+  google.protobuf.Timestamp expiredAt = 2;
+}
+
+message UseAuthCodeRequest {
+  string authCode = 1;
+  string source = 2;
+}
+
+message UseAuthCodeResponse {
+  int64 userId = 1;
+}
