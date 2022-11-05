@@ -22,6 +22,6 @@ public class AppDbContext : DbContext
             .HasFilter("\"RemovedAt\" is not null");
 
         modelBuilder.Entity<UserState>()
-            .HasKey(us => us.TelegramUserId);
+            .HasKey(us => new { us.TelegramUserId, us.TelegramChatId });
     }
 }

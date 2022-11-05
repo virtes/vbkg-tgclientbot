@@ -9,5 +9,6 @@ public class User
 
     public long TelegramUserId { get; set; }
 
-    public long VbkgId { get; set; } = default!;
+    public long VbkgUserId { get; set; } = default!;
+    public string VbkgUserToken { get; set; } = default!;
 }

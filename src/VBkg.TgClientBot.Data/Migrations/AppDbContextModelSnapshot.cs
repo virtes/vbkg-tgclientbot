@@ -37,8 +37,12 @@ namespace VBkg.TgClientBot.Data.Migrations
                     b.Property<long>("TelegramUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("VbkgId")
+                    b.Property<long>("VbkgUserId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("VbkgUserToken")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -52,10 +56,10 @@ namespace VBkg.TgClientBot.Data.Migrations
             modelBuilder.Entity("VBkg.TgClientBot.Data.Entities.UserState", b =>
                 {
                     b.Property<long>("TelegramUserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("TelegramUserId"));
+                    b.Property<long>("TelegramChatId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -64,7 +68,7 @@ namespace VBkg.TgClientBot.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("TelegramUserId");
+                    b.HasKey("TelegramUserId", "TelegramChatId");
 
                     b.ToTable("UserStates");
                 });

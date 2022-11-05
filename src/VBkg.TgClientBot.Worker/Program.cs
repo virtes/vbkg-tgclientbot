@@ -10,39 +10,53 @@ using Serilog.Enrichers.Span;
 using Serilog.Exceptions;
 using Serilog.Exceptions.Core;
 using Serilog.Exceptions.EntityFrameworkCore.Destructurers;
+using VBkg.External.BackgroundRemover.Extensions;
+using VBkg.TgClientBot;
 using VBkg.TgClientBot.Core;
+using VBkg.TgClientBot.Core.Services.Files.Extensions;
+using VBkg.TgClientBot.Core.Services.Users.Extensions;
 using VBkg.TgClientBot.Data;
-using VBkg.TgClientBot.Data.Chabot;
 using VBkg.TgClientBot.Proto.Server;
-using VBkg.TgClientBot.Services.Users.Extensions;
+using VBkg.TgClientBot.Worker.Chabot;
+using VBkg.TgClientBot.Worker.Configuration;
 using VBkg.TgClientBot.Worker.Middlewares;
+using VBkg.TgClientBot.Worker.States;
+using TelegramMessage = Telegram.Bot.Types.Message;
+using TelegramUser = Telegram.Bot.Types.User;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((host, services) =>
     {
-        services.AddScoped<IStateStorage<long, string>, DbContextStateStorage>();
-        services.AddTgChabot(c => c.Token = host.Configuration["TelegramBotOptions:Token"], c =>
+        services.AddScoped<IStateStorage<TelegramMessage, TelegramUser, string>, DbContextStateStorage>();
+        services.AddSingleton<IDefaultStateFactory<TelegramMessage, TelegramUser>, TgClientBotDefaultStateFactory>();
+        services.AddSingleton<LocalizationMiddleware>();
+        services.AddTelegramChabot((c, sp) => c.Token = sp.GetOptionsValue<TelegramBotOptions>().Token, c =>
         {
-            c.UseRabbitMqWorkerProxy(o => o.BindConfiguration("RabbitMqProxyOptions"));
+            c.UseRabbitMqWorkerProxy(o
+                => host.Configuration.Bind("RabbitMqProxyOptions", o));
 
-            c.UseMiddleware<LocalizationMiddleware>();
             c.UseState(s => s
                 .UseSystemTextJsonSerializer());
 
+            c.UseMiddleware<LocalizationMiddleware>();
             c.UseCommands();
         });
 
         services.AddDbContext<AppDbContext>(c
             => c.UseNpgsql(host.Configuration.GetConnectionString(nameof(AppDbContext))));
 
-        services.AddUsersGrpcClient(
-            host: host.Configuration["ServerGrpcApi:Host"],
-            apiKey: host.Configuration["ServerGrpcApi:ApiKey"]);
+        services.AddBackgroundRemoverClient(o
+            => host.Configuration.Bind("BackgroundRemoverClientOptions", o));
+
+        services.AddServerGrpcClient(o
+            => host.Configuration.Bind("ServerGrpcClientOptions", o));
+
+        services.AddOptionsFromConfiguration<TelegramBotOptions>("TelegramBotOptions");
 
         services.AddMediatR(typeof(CoreAssemblyMarker));
         services.AddLocalization();
-        services.AddSingleton<LocalizationMiddleware>();
 
+        services.TryAddFileServices();
         services.TryAddUserServices();
     })
     .UseSerilog((host, _, configuration) => configuration

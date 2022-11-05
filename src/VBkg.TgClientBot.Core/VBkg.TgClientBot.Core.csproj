@@ -9,10 +9,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\VBkg.TgClientBot.Contracts\VBkg.TgClientBot.Contracts.csproj" />
+      <ProjectReference Include="..\VBkg.External.BackgroundRemover\VBkg.External.BackgroundRemover.csproj" />
+      <ProjectReference Include="..\VBkg.External.Server\VBkg.External.Server.csproj" />
       <ProjectReference Include="..\VBkg.TgClientBot.Data\VBkg.TgClientBot.Data.csproj" />
-      <ProjectReference Include="..\VBkg.TgClientBot.Proto\VBkg.TgClientBot.Proto.csproj" />
-      <ProjectReference Include="..\VBkg.TgClientBot.Services\VBkg.TgClientBot.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Destructurama.Attributed" Version="3.0.0" />
+      <PackageReference Include="MediatR" Version="11.0.0" />
+      <PackageReference Include="OneOf" Version="3.0.223" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\Background" />
     </ItemGroup>
 
 </Project>

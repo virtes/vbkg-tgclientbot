@@ -1,10 +1,11 @@
 using System.Globalization;
 using Chabot.Message;
-using Chabot.Telegram;
+using TelegramMessage = Telegram.Bot.Types.Message;
+using TelegramUser = Telegram.Bot.Types.User;
 
 namespace VBkg.TgClientBot.Worker.Middlewares;
 
-public class LocalizationMiddleware : IMiddleware<TgMessage, TgUser, long>
+public class LocalizationMiddleware : IMiddleware<TelegramMessage, TelegramUser>
 {
     private static readonly CultureInfo DefaultCulture = CultureInfo.GetCultureInfo("ru-RU");
 
@@ -15,8 +16,8 @@ public class LocalizationMiddleware : IMiddleware<TgMessage, TgUser, long>
         _logger = logger;
     }
 
-    public async Task Invoke(MessageContext<TgMessage, TgUser, long> messageContext,
-        HandleMessage<TgMessage, TgUser, long> next)
+    public async Task Invoke(MessageContext<TelegramMessage, TelegramUser> messageContext,
+        HandleMessage<TelegramMessage, TelegramUser> next)
     {
         CultureInfo cultureInfo;
 

@@ -9,7 +9,6 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="Chabot" Version="1.0.3" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
           <PrivateAssets>all</PrivateAssets>

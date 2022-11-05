@@ -18,6 +18,7 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 
         var builder = new DbContextOptionsBuilder<AppDbContext>();
         builder.UseNpgsql(configuration.GetConnectionString(nameof(AppDbContext)), o => o.CommandTimeout(7200));
+
         return new AppDbContext(builder.Options);
     }
 }
