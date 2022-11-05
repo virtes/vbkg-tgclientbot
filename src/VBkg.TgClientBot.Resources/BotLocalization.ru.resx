@@ -14,4 +14,28 @@
     <data name="EnterAuthCode" xml:space="preserve">
         <value>Введите код авторизации</value>
     </data>
+    <data name="RemoveBackground_InternalError" xml:space="preserve">
+        <value>Произошла внутренняя ошибка</value>
+    </data>
+    <data name="RemoveBackground_BackgroundNotFound" xml:space="preserve">
+        <value>Не найден фон на изображении</value>
+    </data>
+    <data name="RemoveBackground_FileTooLarge" xml:space="preserve">
+        <value>Файл слишком большой</value>
+    </data>
+    <data name="RemoveBackground_ImageResolutionTooHigh" xml:space="preserve">
+        <value>Разрешение изображения слишком высокое</value>
+    </data>
+    <data name="RemoveBackground_ImageTypeIsNotSupported" xml:space="preserve">
+        <value>Тип изображения не поддерживается</value>
+    </data>
+    <data name="RemoveBackground_InsufficientBalance" xml:space="preserve">
+        <value>Недостаточный баланс. Пополните баланс используя комманду /{0}</value>
+    </data>
+    <data name="RemoveBackground_NotRegisteredInTelegramClientBot" xml:space="preserve">
+        <value>Вы не зарегистрированы в боте. Для регистрации необходимо зайти в @{0}</value>
+    </data>
+    <data name="ImageNotFound" xml:space="preserve">
+        <value>Изображение не найдено</value>
+    </data>
 </root>

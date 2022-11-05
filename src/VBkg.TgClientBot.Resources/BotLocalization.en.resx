@@ -14,4 +14,28 @@
     <data name="EnterAuthCode" xml:space="preserve">
         <value>Enter auth code</value>
     </data>
+    <data name="RemoveBackground_InternalError" xml:space="preserve">
+        <value>Internal error occured</value>
+    </data>
+    <data name="RemoveBackground_BackgroundNotFound" xml:space="preserve">
+        <value>Background not found</value>
+    </data>
+    <data name="RemoveBackground_FileTooLarge" xml:space="preserve">
+        <value>File too large</value>
+    </data>
+    <data name="RemoveBackground_ImageResolutionTooHigh" xml:space="preserve">
+        <value>Image resolution too high</value>
+    </data>
+    <data name="RemoveBackground_ImageTypeIsNotSupported" xml:space="preserve">
+        <value>Image type is not supported</value>
+    </data>
+    <data name="RemoveBackground_InsufficientBalance" xml:space="preserve">
+        <value>Insufficient balance. Replenish the balance using /{0} command.</value>
+    </data>
+    <data name="RemoveBackground_NotRegisteredInTelegramClientBot" xml:space="preserve">
+        <value>You are not registered in the bot. To sign up write to @{0} bot.</value>
+    </data>
+    <data name="ImageNotFound" xml:space="preserve">
+        <value>Image not found</value>
+    </data>
 </root>

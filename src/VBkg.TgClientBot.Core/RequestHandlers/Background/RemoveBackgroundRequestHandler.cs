@@ -33,7 +33,7 @@ public class RemoveBackgroundRequestHandler
         var user = await _userService.GetUserByTelegramUserId(request.TelegramUserId);
         if (user is null)
         {
-            _logger.LogInformation("User by {TelegramUserId} telegram ud not found",
+            _logger.LogInformation("User by {TelegramUserId} telegram id not found",
                 request.TelegramUserId);
             return Error.NotRegisteredInTelegramClientBot;
         }
@@ -68,7 +68,7 @@ public class RemoveBackgroundRequestHandler
                 RemoveBackgroundErrorDto.file_too_large => Error.FileTooLarge,
                 RemoveBackgroundErrorDto.image_resolution_too_high => Error.ResolutionTooHigh,
                 RemoveBackgroundErrorDto.invalid_file_type => Error.InvalidFileType,
-                RemoveBackgroundErrorDto.user_not_found => Error.UserNotFound,
+                RemoveBackgroundErrorDto.user_not_found => Error.InternalError,
                 RemoveBackgroundErrorDto.internal_error => Error.InternalError,
                 _ => throw new ArgumentOutOfRangeException(nameof(error.Error), error.Error, null)
             };

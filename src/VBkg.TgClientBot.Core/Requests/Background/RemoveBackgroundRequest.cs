@@ -35,9 +35,8 @@ public class RemoveBackgroundRequest : IRequest<OneOf<SuccessResult, Error>>
         InternalError = 1,
         InsufficientBalance = 2,
         BackgroundNotFound = 3,
-        UserNotFound = 4,
-        FileTooLarge = 5,
-        ResolutionTooHigh = 6,
-        InvalidFileType = 7
+        FileTooLarge = 4,
+        ResolutionTooHigh = 5,
+        InvalidFileType = 6
     }
 }
