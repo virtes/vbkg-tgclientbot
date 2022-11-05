@@ -50,5 +50,53 @@ namespace VBkg.TgClientBot.Resources {
                 return ResourceManager.GetString("EnterAuthCode", resourceCulture);
             }
         }
+        
+        public static string RemoveBackground_InternalError {
+            get {
+                return ResourceManager.GetString("RemoveBackground_InternalError", resourceCulture);
+            }
+        }
+        
+        public static string RemoveBackground_BackgroundNotFound {
+            get {
+                return ResourceManager.GetString("RemoveBackground_BackgroundNotFound", resourceCulture);
+            }
+        }
+        
+        public static string RemoveBackground_FileTooLarge {
+            get {
+                return ResourceManager.GetString("RemoveBackground_FileTooLarge", resourceCulture);
+            }
+        }
+        
+        public static string RemoveBackground_ImageResolutionTooHigh {
+            get {
+                return ResourceManager.GetString("RemoveBackground_ImageResolutionTooHigh", resourceCulture);
+            }
+        }
+        
+        public static string RemoveBackground_ImageTypeIsNotSupported {
+            get {
+                return ResourceManager.GetString("RemoveBackground_ImageTypeIsNotSupported", resourceCulture);
+            }
+        }
+        
+        public static string RemoveBackground_InsufficientBalance {
+            get {
+                return ResourceManager.GetString("RemoveBackground_InsufficientBalance", resourceCulture);
+            }
+        }
+        
+        public static string RemoveBackground_NotRegisteredInTelegramClientBot {
+            get {
+                return ResourceManager.GetString("RemoveBackground_NotRegisteredInTelegramClientBot", resourceCulture);
+            }
+        }
+        
+        public static string ImageNotFound {
+            get {
+                return ResourceManager.GetString("ImageNotFound", resourceCulture);
+            }
+        }
     }
 }
